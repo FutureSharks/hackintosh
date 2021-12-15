@@ -123,7 +123,6 @@ cp -a downloads/WhateverGreen-1.5.5-RELEASE/WhateverGreen.kext EFI/OC/Kexts/
 cp -a downloads/AppleALC-1.6.6-RELEASE/AppleALC.kext EFI/OC/Kexts/
 cp -a downloads/IntelMausi-1.0.7-RELEASE/IntelMausi.kext EFI/OC/Kexts/
 cp -a downloads/BrcmPatchRAM-2.6.1-RELEASE/BlueToolFixup.kext EFI/OC/Kexts/
-cp -a downloads/NVMeFix-1.0.9-RELEASE/NVMeFix.kext EFI/OC/Kexts/
 ```
 
 Add SSDTs:
