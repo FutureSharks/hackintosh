@@ -2,7 +2,7 @@
 
 ![](img/7.jpg)
 
-My current build runs macOS Monterey 12.1x? and is based on a fanless Intel [NUC8i5BEK](https://ark.intel.com/content/www/us/en/ark/products/126147/intel-nuc-kit-nuc8i5bek.html) with a [i5-8259U CPU](https://ark.intel.com/content/www/us/en/ark/products/135935/intel-core-i58259u-processor-6m-cache-up-to-3-80-ghz.html).
+My current build runs macOS Monterey 12.0.1 and is based on a fanless Intel [NUC8i5BEK](https://ark.intel.com/content/www/us/en/ark/products/126147/intel-nuc-kit-nuc8i5bek.html) with a [i5-8259U CPU](https://ark.intel.com/content/www/us/en/ark/products/135935/intel-core-i58259u-processor-6m-cache-up-to-3-80-ghz.html).
 
 ## What works, what does not
 
@@ -39,7 +39,7 @@ Runs OpenCore 0.7.5:
 - Intel Iris Plus Graphics 655 (built in)
 - 16GB RAM F4-2400C16D-16G
 - Kingston KC600 512GB mSATA SSD (with mSATA adapter)
-- Broadcom BCM94360CD WiFi WLAN + Bluetooth 4.0 (with M.2 NGFF Adapter Card)
+- Broadcom BCM94360CD WiFi WLAN + Bluetooth 4.0 (with modified M.2 NGFF Adapter Card)
 - Alpine AM4 Passive CPU cooler, required some machining to fit
 - Makerbeam open case structure
 - Custom 3D printed CPU mounting brackets
@@ -125,17 +125,18 @@ cp -a downloads/IntelMausi-1.0.7-RELEASE/IntelMausi.kext EFI/OC/Kexts/
 cp -a downloads/BrcmPatchRAM-2.6.1-RELEASE/BlueToolFixup.kext EFI/OC/Kexts/
 ```
 
-Add SSDTs:
-
-```
-cp downloads/*.aml EFI/OC/ACPI/
-```
-
-Get `config.plist` and SSDTs from [Nucintosh](https://github.com/zearp/Nucintosh) release:
+Get `config.plist`, SSDTs and USBPorts kext from [Nucintosh](https://github.com/zearp/Nucintosh) release:
 
 ```
 cp downloads/EFI/OC/config.plist EFI/OC/config.plist
 cp downloads/EFI/OC/ACPI/*.aml EFI/OC/ACPI/
+cp -a downloads/EFI/OC/Kexts/USBPorts.kext EFI/OC/Kexts/
+```
+
+Add SSDTs:
+
+```
+cp downloads/*.aml EFI/OC/ACPI/
 ```
 
 Then make some manual changes to `config.plist`:
@@ -150,7 +151,30 @@ Edit `config.plist` with [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS) to u
 - SystemSerialNumber
 - SystemUUID
 
-Now copy [EFI](EFI) directory to your USB drive and install macOS Monterey.
+Now copy [EFI](EFI) directory to your USB drive and install macOS Monterey:
+
+## Bios settings
+
+Update to the latest (0089) BIOS. Go into BIOS settings and:
+
+1. Load BIOS defaults (F9)
+2. Go to advanced settings
+3. Devices -> USB:
+  - Portable Device Charging Mode: OFF
+  - USB Legacy: Uncheck
+4. Devices -> Onboard Devices:
+  - WLAN: Uncheck
+  - Bluetooth: Uncheck
+4. Devices -> Legacy Device Configuration -> HDMI CEC Control: Uncheck
+5. Security -> Thunderbolt Security Level: Legacy Mode
+6. Power:
+  - Wake on LAN from S4/S5: Stay Off
+  - Max Performance Enabled: Uncheck
+  - Intel Dynamic Power Technology: Energy Efficient Performance
+  - Color: Violet
+7. Boot:
+  - Boot Configuration -> Network Boot: Disable
+  - Secure Boot: Uncheck
 
 ## Credits
 
