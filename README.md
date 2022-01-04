@@ -1,8 +1,8 @@
 # My Hackintosh
 
-![](img/7.jpg)
+![](img/6.jpg)
 
-My current build runs macOS Monterey 12.0.1 and is based on a fanless Intel [NUC8i5BEK](https://ark.intel.com/content/www/us/en/ark/products/126147/intel-nuc-kit-nuc8i5bek.html) with a [i5-8259U CPU](https://ark.intel.com/content/www/us/en/ark/products/135935/intel-core-i58259u-processor-6m-cache-up-to-3-80-ghz.html).
+My current build runs macOS Monterey 12.0.1, [OpenCore](https://dortania.github.io/OpenCore-Install-Guide/) 0.7.5 and is based on a fanless Intel [NUC8i5BEK](https://ark.intel.com/content/www/us/en/ark/products/126147/intel-nuc-kit-nuc8i5bek.html) with a [i5-8259U CPU](https://ark.intel.com/content/www/us/en/ark/products/135935/intel-core-i58259u-processor-6m-cache-up-to-3-80-ghz.html).
 
 ## What works, what does not
 
@@ -11,18 +11,19 @@ My current build runs macOS Monterey 12.0.1 and is based on a fanless Intel [NUC
 - ✅ HDMI and USB-C video at 2560 x 1440 @ 60 Hz
 - ✅ USB2 / USB3 / USB-C
 - ✅ SATA storage
-- ✅ WiFi WLAN + Bluetooth in M.2 slot
-- ❔ Front panel audio: sounds is unbalanced and weird
-- ❔ SD card reader: haven't tested
+- ✅ WiFi/WLAN in M.2 slot
+- ❔ Front panel audio: not tested
+- ❔ SD card reader: not tested
 - ❔ Other display resolutions: not tested
 - ❌ Sleep/wake: Doesn't work
+- ❌ Bluetooth: Unreliable (maybe antenna is inadequate)
 - ❌ Built in WLAN/Bluetooth: It is [apparently possible but not perfect](https://github.com/OpenIntelWireless/itlwm)
 
 ## Hackintosh details
 
-![](img/mac-os-screenshot.png)
+![](img/mac-os-screenshot.jpg)
 
-Runs OpenCore 0.7.5:
+Runs [OpenCore](https://dortania.github.io/OpenCore-Install-Guide/) 0.7.5:
 
 - [config.plist](EFI/OC/config.plist)
 - [EFI](EFI) directory
@@ -51,10 +52,10 @@ Power measured at wall, temperature measured from built in sensors.
 
 | State                                        | Power (watts) | CPU temp (°C) |
 |----------------------------------------------|---------------|---------------|
-| Powered off                                  | 0.9           | 0             |
-| Booted OS, idle                              | 4-6           | 34            |
+| Powered off                                  | 0.5           | 0             |
+| Booted OS, idle                              | 6-10          | 29            |
 | Normal use with Chrome, AutoCAD, Spotify etc | 10-20         | 40-70         |
-| Prime95 or stress                            | 44            | 94            |
+| Prime95 or stress                            | 52            | 90            |
 
 ### CAD files
 
